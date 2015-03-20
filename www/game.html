@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html ng-app="PixiBowling">
+<head ng-controller="HeadController as headCtrl">
+
+    <meta name="viewport" content="width=device-width, initial-scale=0.55">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta property="og:title" content="Pixi Bowling">
+    <meta property="og:description" content="Bowling game from PixiGame">
+    <meta property="og:image" content="http://www.pixigame.com/pixi-bowling/images/icon.png">
+
+    <title>Pixi Bowling</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
+    <link rel="icon" sizes="192x192" href="icon.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icon.png">
+
+    <script type="text/javascript" src="js/stat.js"></script>
+    <script type="text/javascript" src="js/bowling.js"></script>
+
+</head>
+<body ng-controller="BodyController as bodyCtrl">
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/pixiapp.js"></script>
+    <script type="text/javascript">
+        pixiapp.initialize();
+    </script>
+</body>
+</html>

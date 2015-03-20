@@ -16,7 +16,7 @@
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-"use strict";
+
 function elementsWithId() {
     var t, e, n, i = document.querySelectorAll("[id]");
     for (c = {}, t = 0, e = i.length; e > t; ++t)n = i[t], c[n.id] = n
@@ -208,7 +208,7 @@ graphics.prototype.update = function (t) {
     return parseFloat(Math.round(10 * this.f) / 10).toFixed(1)
 };
 var Model = function (t) {
-    this.meshes = {}, this.textures = {}, this.quality = t.performance >= 5 ? 2 : 1, this.completeFn = t.success, this.errFn = t.error, this.progFn = t.progress, this.totalToLoad = 3, this.numToLoad = this.totalToLoad
+    this.meshes = {}, this.textures = {}, this.quality = 2, this.completeFn = t.success, this.errFn = t.error, this.progFn = t.progress, this.totalToLoad = 3, this.numToLoad = this.totalToLoad
 };
 Model.tbu = "\"^'^_'Ap_", Model.mbu = "\"^'^_Tt\"A6_", Model.prototype.load = function () {
     var t = this, e = new THREE.JSONLoader, n = encryptor.dec(Model.tbu);
@@ -508,7 +508,7 @@ L.STATE_BOOT = 0, L.STATE_INIT = 1, L.STATE_WAITSTART = 2, L.STATE_PLAYING = 3, 
     })
 }, L.prototype.getfky = function () {
     var t = this;
-    ajax.doRequest("services.php", {action: "fky"}, function (e) {
+    ajax.doRequest("services.json", {action: "fky"}, function (e) {
         var n = JSON.parse(e);
         t.fky = n.__fky, t.fky_time = Date.now()
     }, function (t) {

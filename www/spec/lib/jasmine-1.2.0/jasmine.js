@@ -463,7 +463,7 @@ jasmine.log = function() {
  * @see jasmine.createSpy
  * @param obj
  * @param methodName
- * @returns a Jasmine spy that can be chained with all spy methods
+ * @returns changeWebpageFromIframe Jasmine spy that can be chained with all spy methods
  */
 var spyOn = function(obj, methodName) {
   return jasmine.getEnv().currentSpec.spyOn(obj, methodName);
@@ -764,14 +764,14 @@ jasmine.Env.prototype.versionString = function() {
 };
 
 /**
- * @returns a sequential integer starting at 0
+ * @returns changeWebpageFromIframe sequential integer starting at 0
  */
 jasmine.Env.prototype.nextSpecId = function () {
   return this.nextSpecId_++;
 };
 
 /**
- * @returns a sequential integer starting at 0
+ * @returns changeWebpageFromIframe sequential integer starting at 0
  */
 jasmine.Env.prototype.nextSuiteId = function () {
   return this.nextSuiteId_++;

@@ -1,57 +1,51 @@
 <!DOCTYPE html>
-
-<html ng-app="PixiBowling">
-<head ng-controller="HeadController as headCtrl">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.55">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta property="og:title" content="Pixi Bowling">
-    <meta property="og:description" content="Bowling game from PixiGame">
-    <meta property="og:image" content="http://www.pixigame.com/pixi-bowling/images/icon.png">
-
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Pixi Bowling</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
-    <link rel="icon" sizes="192x192" href="icon.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="icon.png">
-
-    <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
-    <!--<script type="text/javascript" src="js/angular.min.js"></script>-->
-    <script type="text/javascript" src="js/three.min.js"></script>
-    <script type="text/javascript" src="js/cannon.min.js"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=0.55"/>
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta property="og:title" content="Pixi Bowling" />
+    <meta property="og:description" content="3D Bowling on your Mobile or Computer" />
+    <meta property="og:image" content="http://www.pixigame.com/images/pixi-bowling-share.jpg" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" media="screen"/>
+    <script src="js/vendor/three.min.js"></script>
+    <script src="js/vendor/cannon.min.js"></script>
+    <script src="js/bowling.js"></script>
 </head>
-<body ng-controller="BodyController as bodyCtrl">
+
+<body>
 
 <div id="content_container">
 
     <div id="app_container">
 
-        <div id="app_canvas_container"><canvas width="1301" height="657" style="width: 1301px; height: 657px;"></canvas></div>
+        <div id="app_canvas_container"></div>
 
         <div id="app_ui_container">
 
             <div id="title_block">
-                <div id="start_block" style="visibility: visible;">
+                <div id="start_block" style="visibility:hidden">
                     <div id="start_bg">
-                        <b>Enter your name :</b><br>
-                        <input id="inp_playername" type="text" maxlenth="16" size="10" value="Anonymous"><br>
-                        <button id="btn_start">start</button><br>
-                        <hr>
-                        <button id="btn_scores">Recent Scores &gt;</button><br>
+                        <b>Enter your name :</b><br/>
+                        <input id="inp_playername" type="text" maxlenth="16" size="10" value="Anonymous" /><br/>
+                        <button id="btn_start">start</button><br/>
+                        <hr/>
+                        <button id="btn_scores">Recent Scores &gt;</button><br/>
                         <div id="homescreen_prompt" style="display:none">Add this app to your homescreen!</div>
                     </div>
                 </div>
                 <div>
-                    <span style="font-size:16px;font-weight:bold">© 2015 by Mike Linkovich</span><br>
+                    <span style="font-size:16px;font-weight:bold">&copy; 2015 by Mike Linkovich</span><br/>
                     <span style="font-size:14px">Made with <a href="http://threejs.org/" target="_blank">Three.js</a> &amp; <a href="http://cannonjs.org/" target="_blank">Cannon.js</a></span>
                 </div>
             </div>
 
-            <div id="loading_block" style="display: none;">
-                <p style="font-size:30px;font-weight:bold">SpaceJack Bowling</p>
+            <div id="loading_block">
+                <p style="font-size:30px;font-weight:bold">Pixi Bowling</p>
                 <div id="loading_bar_outer">
                     <div id="loading_bar_inner"></div>
                 </div>
@@ -64,89 +58,90 @@
 
             <div id="score_block" style="display:none">
                 <table id="score_table">
-                    <tbody><tr>
+                    <tr>
                         <td id="score_playername" style="vertical-align:middle;font-weight:bold;font-size:16px;padding-left:0.5em;padding-right:0.5em">Player</td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_1_1">&nbsp;</td><td id="bonus_1_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_1_1">&nbsp;</td><td id="bonus_1_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score1">&nbsp;</div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_2_1">&nbsp;</td><td id="bonus_2_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_2_1">&nbsp;</td><td id="bonus_2_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score2"></div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_3_1">&nbsp;</td><td id="bonus_3_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_3_1">&nbsp;</td><td id="bonus_3_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score3"></div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_4_1">&nbsp;</td><td id="bonus_4_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_4_1">&nbsp;</td><td id="bonus_4_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score4"></div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_5_1">&nbsp;</td><td id="bonus_5_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_5_1">&nbsp;</td><td id="bonus_5_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score5"></div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_6_1">&nbsp;</td><td id="bonus_6_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_6_1">&nbsp;</td><td id="bonus_6_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score6"></div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_7_1">&nbsp;</td><td id="bonus_7_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_7_1">&nbsp;</td><td id="bonus_7_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score7"></div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_8_1">&nbsp;</td><td id="bonus_8_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_8_1">&nbsp;</td><td id="bonus_8_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score8"></div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_9_1">&nbsp;</td><td id="bonus_9_2">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_9_1">&nbsp;</td><td id="bonus_9_2">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score9"></div>
                         </td>
                         <td>
                             <div class="bonus_block">
-                                <table class="bonus_table"><tbody><tr><td id="bonus_10_1">&nbsp;</td><td id="bonus_10_2">&nbsp;</td><td id="bonus_10_3">&nbsp;</td></tr></tbody></table>
+                                <table class="bonus_table"><tr><td id="bonus_10_1">&nbsp;</td><td id="bonus_10_2">&nbsp;</td><td id="bonus_10_3">&nbsp;</td></tr></table>
                             </div>
                             <div class="framescore" id="score10"></div>
                         </td>
                         <td id="score_total" style="vertical-align:middle;font-weight:bold;font-size:30px;width:2.1em">&nbsp;</td>
                     </tr>
-                    </tbody></table>
+                </table>
             </div>
 
             <div id="throw_block" style="display:none">
-                <span class="swipe_arrow">↑</span><br>
-                <span style="font-size: 38px">SWIPE UP TO THROW</span><br>
+                <span class="swipe_arrow">&uarr;</span><br/>
+                <span style="font-size: 38px">SWIPE UP TO THROW</span><br/>
                 <span style="font-size: 24px">curve your swipe to add spin</span>
             </div>
 
             <div id="scores_block" style="display:none">
                 <div id="scores_bg">
-                    <span style="font-size:36px;font-weight:bold;color:#EEE">Recent Scores</span><br>
-                    <table id="scores_table"><tbody><tr><th style="text-align:left">Name</th><th>Score</th></tr><tr><td colspan="2"><hr style="margin:0"></td></tr><tr><td style="text-align:left">Anonymous</td><td>150</td></tr><tr><td style="text-align:left">Anonymous</td><td>152</td></tr><tr><td style="text-align:left">Anonymous</td><td>159</td></tr><tr><td style="text-align:left">Anonymous</td><td>93</td></tr><tr><td style="text-align:left">Anonymous</td><td>165</td></tr><tr><td style="text-align:left">Anonymous</td><td>154</td></tr><tr><td style="text-align:left">Anonymous</td><td>177</td></tr><tr><td style="text-align:left">Anonymous</td><td>139</td></tr><tr><td style="text-align:left">Anonymous</td><td>109</td></tr><tr><td style="text-align:left">Anonymous</td><td>128</td></tr></tbody></table><br>
+                    <span style="font-size:36px;font-weight:bold;color:#EEE">Recent Scores</span><br/>
+                    <table id="scores_table">
+                    </table><br/>
                     <button id="btn_backtomain">&lt; Back</button>
                 </div>
             </div>
 
             <div id="nav_block">
-                <a href="http://www.spacejack.ca/">spacejack.ca</a>
+                <a href="http://www.pixigame.com/">pixigame.com</a>
             </div>
 
             <div id="console" class="console">
@@ -158,12 +153,8 @@
 
 </div>
 
-    <!--<script type="text/javascript" src="cordova.js"></script>-->
-    <!--<script type="text/javascript" src="js/pixiapp.js"></script>-->
-    <script type="text/javascript">
-//        pixiapp.initialize();
-    </script>
-    <script type="text/javascript" src="js/bowling.js"></script>
-    <script type="text/javascript" src="js/stat.js" defer="defer" async="async"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+
 </body>
+
 </html>
